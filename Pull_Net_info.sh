@@ -3,7 +3,7 @@
 
 #####   Vars   #####
 
-interfaces=$(ifconfig |grep -oP "^[^\s]*" |sed s/\://g)
+interfaces=$(ifconfig |grep -oP '^(\w+)(?=\:?)')
 
 
 #####   Funcs   #####
@@ -12,7 +12,7 @@ f_ip_list(){
 
     for i in $interfaces
       do
-	ip=$(ip address show $i |grep -oP "inet (\d{0,3}\.?){4}")
+	ip=$(ip address show $i |grep -oP '(?<=inet )(\d{1,3}\.?){4}')
 	if [[ -n $ip ]];then
 	  echo "$i : $ip"
 	else
@@ -25,7 +25,7 @@ f_mac_list(){
 
     for m in $interfaces
       do
-	mac=$(ip link show $m |grep -oP "(\w{2}\:?){6}" |sed -r '/(ff\:ff)|(00\:00\:00)/d')
+	mac=$(ip link show $m |grep -oP '(?<=link\/ether |loopback )(\w{2}\:?){6}')
 	if [[ -n $mac ]];then
 	  echo "$m : $mac"
 	else
@@ -59,7 +59,7 @@ printf "  Usage: -n -i -m
     getopts ":nim" opt
 	case $opt in
 	    n)
-	      echo "Interfaces: $interfaces"
+	      printf "Interfaces: \n$interfaces\n"
 	      ;;
 	    i)
 	      f_ip_list
