@@ -4,9 +4,9 @@
 
 f_deps(){
 
-deps="git libsmi21dbl smistrip libxslt1-dev python3.6-dev libevent-dev default-libmysqlclient-dev"
+deps="git libsmi2ldbl smistrip libxslt1-dev python3.6-dev libevent-dev default-libmysqlclient-dev python3-pip"
 
-sudo yum update -y
+sudo apt-get update -y
 
 for p in $deps; do
   sudo apt-get install -y $p
@@ -17,9 +17,9 @@ for p in $deps; do
   fi
 done
 
-printf "Succsed: $Installed \n
-Failed: $Failed \n
-"
+echo "Succsed: ${Installed[@]} "
+echo "Failed: ${Failed[@]} "
+
 }
 
 # Installing Conpot
@@ -29,6 +29,8 @@ f_install(){
 mkdir Conpot
 
 cd Conpot
+
+pip3 install virtaulenv
 
 virtualenv --python=python3.6 conpot
 
