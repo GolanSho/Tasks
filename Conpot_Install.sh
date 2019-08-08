@@ -9,7 +9,7 @@ deps="git libsmi21dbl smistrip libxslt1-dev python3.6-dev libevent-dev default-l
 sudo yum update -y
 
 for p in $deps; do
-  sudo yum install -y $p
+  sudo apt-get install -y $p
   if [ $? -eq 0 ]; then
     Installed=("${Installed[@]}" "$p")
   else
