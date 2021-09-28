@@ -10,8 +10,7 @@ pipeline {
   stages {
     stage('Build-zip') {
       steps {  
-        sh "cd task"
-        sh "python zip_job.py"   
+        sh "python3 /tmp/zip_job.py"   
       }
     }
     stage('Build-app') {
