@@ -4,7 +4,7 @@ pipeline {
       label 'zip_job'  
       idleMinutes 5  
       yamlFile 'task/build-pod.yaml'  
-      defaultContainer 'zip_job'  
+      defaultContainer 'zip-job'  
     }
   }
   stages {
