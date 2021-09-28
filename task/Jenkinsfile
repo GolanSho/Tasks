@@ -10,7 +10,10 @@ pipeline {
   stages {
     stage('Build-zip') {
       steps {  
-        sh "python3 /tmp/zip_job.py"   
+        sh """
+		cd task/out-files
+		python3 /tmp/zip_job.py
+	"""   
       }
     }
     stage('Build-app') {
