@@ -1,0 +1,12 @@
+pipeline {
+    agent {
+        docker { image 'zip_job:0.1' }
+    }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'echo $VERSION'
+            }
+        }
+    }
+}
