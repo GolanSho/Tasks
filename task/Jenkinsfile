@@ -20,7 +20,7 @@ pipeline {
       steps {  
         container('gradle') {
 	  sh """
-		cd task/hello-world-java/src"  
+		cd task/hello-world-java/src
           	pwd && ls
           	javac HelloWorld.java
 	"""
