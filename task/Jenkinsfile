@@ -21,8 +21,8 @@ pipeline {
         container('gradle') {
 	  sh """
 		cd task/hello-world-java/src
-          	pwd && ls
           	javac HelloWorld.java
+          	ls
 	"""
 	}
       }
@@ -30,9 +30,11 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         container('docker') {  
-          sh "cd task/hello-world-java"
-	  sh "docker build -t hello-world:0.1 ."  
-          sh "docker push hello-world:0.1"       
+          sh """
+		cd task/hello-world-java
+	  	docker build -t hello-world:0.1 .
+          	docker push hello-world:0.1
+	"""       
         }
       }
     }
