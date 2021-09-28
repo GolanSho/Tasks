@@ -1,12 +1,25 @@
 pipeline {
-    agent {
-        docker { image 'zip_job:0.1' }
+  agent {
+    kubernetes {
+      label 'zip_job'  
+      idleMinutes 5  
+      yamlFile 'build-pod.yaml'  
+      defaultContainer 'zip_job'  
     }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'echo $VERSION'
-            }
+  }
+  stages {
+    stage('Build') {
+      steps {  
+        sh "echo $VERSION"   
+      }
+    }
+   /* stage('Build Docker Image') {
+      steps {
+        container('docker') {  
+          sh "docker build -t vividseats/promo-app:dev ."  // when we run docker in this step, we're running it via a shell on the docker build-pod container, 
+          sh "docker push vividseats/promo-app:dev"        // which is just connecting to the host docker deaemon
         }
-    }
+      }
+    }*/
+  }
 }
