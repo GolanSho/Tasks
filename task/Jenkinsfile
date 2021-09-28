@@ -3,7 +3,7 @@ pipeline {
     kubernetes {
       label 'zip_job'  
       idleMinutes 5  
-      yamlFile 'build-pod.yaml'  
+      yamlFile 'task/build-pod.yaml'  
       defaultContainer 'zip_job'  
     }
   }
