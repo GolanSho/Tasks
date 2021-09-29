@@ -32,8 +32,8 @@ pipeline {
         container('docker') {  
           sh """
 		cd task/hello-world-java
-	  	docker build -t hello-world:0.1 .
-          	docker push hello-world:0.1
+	  	docker build -t localhost:5000/hello-world:0.1 .
+          	docker push localhost:5000/hello-world:0.1
 	"""       
         }
       }
