@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: hellow-world
+  name: hello-world
+  namespace: apps
+spec:
+  containers:  
+    - name: hello-world
+      image: localhost:5000/hello-world:0.1
+      command: ["tail", "-f", "/dev/null"] 
+      imagePullPolicy: Always
+      resources:  
+        requests:
+          memory: "1Gi"
+          cpu: "500m"
+        limits:
+          memory: "2Gi"
