@@ -15,6 +15,7 @@ pipeline {
 
         sh """
 		cd task/out-files
+		cat /tmp/zip_job.py
 		python3 /tmp/zip_job.py
 	"""   
       }
