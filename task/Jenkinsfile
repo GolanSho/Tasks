@@ -10,6 +10,8 @@ pipeline {
   stages {
     stage('Build-zip') {
       steps {  
+	displayMessage("Running zip job script on zip_job container")
+
         sh """
 		cd task/out-files
 		python3 /tmp/zip_job.py
@@ -18,17 +20,20 @@ pipeline {
     }
     stage('Build-app') {
       steps {  
+	displayMessage("using gradle container to compile the java app")
+
         container('gradle') {
 	  sh """
 		cd task/hello-world-java/src
           	javac HelloWorld.java
-          	ls
-	"""
+	  """
 	}
       }
     }
     stage('Build Docker Image') {
       steps {
+	displayMessage("using the docker container to Build Image of the java app\n and push it to local registry")
+
         container('docker') {  
           sh """
 		cd task/hello-world-java
