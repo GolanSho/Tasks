@@ -1,4 +1,6 @@
-import java.text.SimpleDateFormat
+import java.util.logging.Logger
+Logger logger = Logger.getLogger('org.example.jobdsl')
+
 pipeline {
   agent {
     kubernetes {
@@ -11,7 +13,7 @@ pipeline {
   stages {
     stage('Build-zip') {
       steps {  
-	displayMessage("Running zip job script on zip_job container")
+	logger.info("Running zip job script on zip_job container")
 
         sh """
 		cd task/out-files
@@ -21,7 +23,7 @@ pipeline {
     }
     stage('Build-app') {
       steps {  
-	displayMessage("using gradle container to compile the java app")
+	logger.info("using gradle container to compile the java app")
 
         container('gradle') {
 	  sh """
@@ -33,7 +35,7 @@ pipeline {
     }
     stage('Build Docker Image') {
       steps {
-	displayMessage("using the docker container to Build Image of the java app\n and push it to local registry")
+	logger.info("using the docker container to Build Image of the java app\n and push it to local registry")
 
         container('docker') {  
           sh """
