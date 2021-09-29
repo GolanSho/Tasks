@@ -21,10 +21,10 @@ for f in arr:
 # b_1.2.0.zip should include b.txt
 for z in arr:
     try:
-        os.system(f"zip {z}_$VERSION.zip {f}.txt")
+        os.system(f"zip {z}_$VERSION.zip {z}.txt")
         os.system(f"echo {z}_$VERSION.zip Created")
     except Exception as e:
-        print(f"Couldn't Create zip file of {f}.txt, error: {e}")
+        print(f"Couldn't Create zip file of {z}.txt, error: {e}")
         sys.exit(1)
 
 # Make sure all zip files are created, if not fail the script
