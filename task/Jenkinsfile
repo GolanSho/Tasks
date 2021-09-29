@@ -1,5 +1,5 @@
 import java.util.logging.Logger
-Logger logger = Logger.getLogger('org.example.jobdsl')
+@Field Logger logger = Logger.getLogger('org.example.jobdsl')
 
 pipeline {
   agent {
