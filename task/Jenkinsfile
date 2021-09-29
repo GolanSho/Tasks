@@ -11,7 +11,7 @@ pipeline {
   stages {
     stage('Build-zip') {
       steps {  
-	println("Running zip job script on zip_job container")
+	println("###   Running zip job script on zip_job container   ###")
 
         sh """
 		cd task/out-files
@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Build-app') {
       steps {  
-	println("using gradle container to compile the java app")
+	println("###   using gradle container to compile the java app   ###")
 
         container('gradle') {
 	  sh """
@@ -33,7 +33,7 @@ pipeline {
     }
     stage('Build Docker Image') {
       steps {
-	println("using the docker container to Build Image of the java app\n and push it to local registry")
+	println("###   using the docker container to Build Image of the java app   ###\n###   and push it to local registry ###")
 
         container('docker') {  
           sh """
